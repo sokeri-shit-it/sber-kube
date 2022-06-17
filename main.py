@@ -83,7 +83,7 @@ def index():
                 'vdc': form.vdc.data
                 }
             }
-        file = open('output.yaml','w')
+        file = open('static/output.yaml','w')
         file.write(yaml.dump(d))
         file.close
         
