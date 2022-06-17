@@ -1,0 +1,25 @@
+---
+vcd:
+  user: 
+  password: 
+  network_main: 
+  org: 
+  vdc: 
+
+cluster:
+  domain: 
+  network:
+    node: 
+  nodes:
+    lb:
+      count: 
+    master:
+      count: 
+    router:
+      count: 
+    service_logging:
+      count: 
+    service_monitoring:
+      count: 
+    worker:
+      count: 

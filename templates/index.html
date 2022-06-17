@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  <link href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> 
+  <script src="static/js/main.js"></script>
+  <link rel="shortcut icon" href="static/img/sberbank.png" type="img/png">
+
+  <title>SBER</title>
+</head>
+
+<body class="font-monospace">
+    <header>
+      <div class="bg-success"><br><br>
+          <h1 class="text-white text-center">SBER KUBERNETES</h1>
+        <br><br>
+      </div>
+    </header>
+    <main class="container"><br>
+      <form method="POST" action="">
+      <div name="form"> 
+          <div class="container px-4">
+            <div class="row gx-5">
+              <div class="col">
+                {{ form.csrf_token() }}
+                <div class="form-floating">
+                  {{ form.username(class="form-control me-2", placeholder="Search", id="input1", pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$", maxlength="20", onchange="buttons()") }}
+                  <label for="input1">Пользователь</label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-floating">
+                  {{ form.password(class="form-control me-2", placeholder="Search", id="input2", pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$", maxlength="30", onchange="buttons()") }}
+                  <label for="input2">Пароль</label>
+                </div>
+              </div>
+            </div><br>
+            <div class="row gx-5">
+              <div class="col">
+                <div class="form-floating">
+                  {{ form.network_main(class="form-control me-2", placeholder="Search", id="input3", pattern="^[a-zA-Z0-9_]*$", maxlength="20", onchange="buttons()") }}
+                  <label for="input3">Название сети</label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-floating">
+                  {{ form.org(class="form-control me-2", placeholder="Search", id="input4", pattern="^[A-Z0-9_]*$", maxlength="40", onchange="buttons()") }}
+                  <label for="input4">Тенант</label>
+                </div>
+              </div>
+            </div><br>
+            <div class="row gx-5">
+              <div class="col">
+                <div class="form-floating">
+                  {{ form.vdc(class="form-control me-2", placeholder="Search", id="input5", pattern="^[A-Z0-9_]*$", maxlength="40", onchange="buttons()") }}
+                  <label for="input5">ВДЦ</label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-floating">
+                  {{ form.domain(class="form-control me-2", placeholder="Search", id="input6", pattern="^(?:[-A-Za-z0-9]+\.)+[A-Za-z]{2,6}$", maxlength="40", onchange="buttons()") }}
+                  <label for="input6">Доменное имя</label>
+                </div>
+              </div>
+            </div><br>
+            <div class="row gx-5">
+              <div class="col">
+                <div class="form-floating">
+                  {{ form.network(class="form-control me-2", placeholder="Search", id="input7", pattern="(?<!\d\.)(?<!\d)(?:\d{1,3}\.){3}\d{1,3}/\d{1,2}(?!\d|(?:\.\d))", minlength="9", maxlength="18", onchange="buttons()") }}
+                  <label for="input7">Подсеть ВДЦ</label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-floating">
+                  {{ form.lb(class="form-control me-2", placeholder="Search", id="input8", type="number", min="0", max='2', onchange="buttons()") }}
+                  <label for="input8">Балансиры</label>
+                </div>
+              </div>
+            </div><br>
+            <div class="row gx-5">
+              <div class="col">
+                <div class="form-floating">
+                  {{ form.master(class="form-control me-2", placeholder="Search", id="input9", type="number", min="1", max='3', onchange="buttons()") }}
+                  <label for="input9">Мастера</label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-floating">
+                  {{ form.router(class="form-control me-2", placeholder="Search", id="input10", type="number", min="1", max='4', onchange="buttons()") }}
+                  <label for="input10">Роутеры</label>
+                </div>
+              </div>
+            </div><br>
+            <div class="row gx-5">
+              <div class="col">
+                <div class="form-floating">
+                  {{ form.service_logging(class="form-control me-2", placeholder="Search", id="input11", type="number", min="0", max='70', onchange="buttons()") }}
+                  <label for="input11">Воркеры</label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-floating">
+                  {{ form.service_monitoring(class="form-control me-2", placeholder="Search", id="input12", type="number", min="0", max='2', onchange="buttons()") }}
+                  <label for="input12">Сервисы мониторинга</label>
+                </div>
+              </div>
+            </div><br>
+            <div class="row gx-5">
+              <div class="col">
+                <div class="form-floating">
+                  {{ form.worker(class="form-control me-2", placeholder="Search", id="input13", type="number", min="0", max='2', onchange="buttons()") }}
+                  <label for="input13">Сервисы логирования</label>
+                </div>
+              </div>
+            </div><br>
+            <div class="row">
+              <div class="col">{{ form.com1() }} {{ form.com1.label }}</div>
+              <div class="col">{{ form.com2() }} {{ form.com2.label }}</div>
+              <div class="col">{{ form.com3() }} {{ form.com3.label }}</div>
+              <div class="col">{{ form.com4() }} {{ form.com4.label }}</div>
+              <div class="col">{{ form.com5() }} {{ form.com5.label }}</div>
+            </div>
+          </div><br>
+  
+      </div>
+      
+        <div class="d-grid gap-2">
+          {{ form.submit(class="btn btn-outline-success", id="submitButton", onclick="disp(document.getElementById('div1'))", disabled="disabled") }}
+        </div>
+      </form>
+    </main>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+</body>
+</html>
